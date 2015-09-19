@@ -13,7 +13,7 @@ class NeutralizeParentInverseOperator(bpy.types.Operator):
     def execute(self, context):
         # based off code by ideasman42
         # found originally at: http://blender.stackexchange.com/questions/28896/how-to-clear-parent-inverse-without-actually-moving-the-object
-        for ob in context.scene.objects:
+        for ob in context.selected_objects:
             if ob.parent:
                 # store a copy of the objects final transformation
                 # so we can read from it later.
@@ -26,6 +26,7 @@ class NeutralizeParentInverseOperator(bpy.types.Operator):
                 # re-apply the difference between parent/child
                 # (this writes directly into the loc/scale/rot) via a matrix.
                 ob.matrix_basis = ob.parent.matrix_world.inverted() * ob_matrix_orig
+        return {'FINISHED'}
 
 def register():
     bpy.utils.register_class(NeutralizeParentInverseOperator)
