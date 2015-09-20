@@ -11,21 +11,12 @@ class NeutralizeParentInverseOperator(bpy.types.Operator):
         return context.active_object is not None
 
     def execute(self, context):
-        # based off code by ideasman42
-        # found originally at: http://blender.stackexchange.com/questions/28896/how-to-clear-parent-inverse-without-actually-moving-the-object
         for ob in context.selected_objects:
             if ob.parent:
-                # store a copy of the objects final transformation
-                # so we can read from it later.
-                ob_matrix_orig = ob.matrix_world.copy()
-
-                # reset parent inverse matrix
-                # (relationship created when parenting)
+                # Merge the inverse into the object's transforms
+                ob.matrix_basis = ob.matrix_parent_inverse * ob.matrix_basis
+                # Nullify the vestigial inverse matrix
                 ob.matrix_parent_inverse.identity()
-
-                # re-apply the difference between parent/child
-                # (this writes directly into the loc/scale/rot) via a matrix.
-                ob.matrix_basis = ob.parent.matrix_world.inverted() * ob_matrix_orig
         return {'FINISHED'}
 
 def register():
