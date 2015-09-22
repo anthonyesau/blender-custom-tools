@@ -15,7 +15,7 @@ class NeutralizeParentInverseOperator(bpy.types.Operator):
             if ob.parent:
                 # Merge the inverse into the object's transforms
                 ob.matrix_basis = ob.matrix_parent_inverse * ob.matrix_basis
-                # Nullify the vestigial inverse matrix
+                # Clear the parent inverse matrix
                 ob.matrix_parent_inverse.identity()
         return {'FINISHED'}
 
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
 
 class NeutralizeTransformsOperator(bpy.types.Operator):
-    """Set the parent inverse matrix to current object transforms then clear all transforms. """
+    """Set the parent inverse matrix to current object transforms then clear all transforms"""
     bl_idname = "object.neutralize_transforms"
     bl_label = "Neutralize Transforms"
 
