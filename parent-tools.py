@@ -129,3 +129,50 @@ def unregister():
 
 if __name__ == "__main__":
     register()
+
+
+# Create Parent Data UI in the Tool Shelf of the 3D View under within the Parent Tools category
+class ParentDataUI(bpy.types.Panel):
+    """Better Parenting"""
+    bl_space_type = 'VIEW_3D'
+    bl_context = "objectmode"
+    bl_region_type = 'TOOLS'
+    bl_category = "Parent Tools"
+    bl_label = "Parent Data"
+
+    def draw(self, context):
+
+        ob = bpy.context.object
+        layout = self.layout
+
+        row = layout.row()
+        row.label(text="Object: " + ob.name)
+
+        if ob.parent:
+          row = layout.row()
+          row.label(text="Child of: " + ob.parent.name)
+
+          row = layout.row()
+          row.label(text="Parent Inverse:")
+
+          loc, rot, scale = ob.matrix_parent_inverse.decompose()
+
+          row = layout.row()
+          row.label(text="Loc: " + str(round(loc[0], 2)) + ", " + str(round(loc[1], 2)) + ", " + str(round(loc[2], 2)))
+
+          row = layout.row()
+          row.label(text="Rot: " + str(round(rot[0], 2)) + ", " + str(round(rot[1], 2)) + ", " + str(round(rot[2], 2)) + ", " + str(round(rot[3], 2)))
+
+          row = layout.row()
+          row.label(text="Scale: " + str(round(scale[0], 2)) + ", " + str(round(scale[1], 2)) + ", " + str(round(scale[2], 2)))
+
+
+
+def register():
+    bpy.utils.register_class(ParentDataUI)
+
+def unregister():
+    bpy.utils.unregister_class(ParentDataUI)
+
+if __name__ == "__main__":
+    register()
