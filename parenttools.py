@@ -19,15 +19,6 @@ class NeutralizeParentInverseOperator(bpy.types.Operator):
                 ob.matrix_parent_inverse.identity()
         return {'FINISHED'}
 
-def register():
-    bpy.utils.register_class(NeutralizeParentInverseOperator)
-
-def unregister():
-    bpy.utils.unregister_class(NeutralizeParentInverseOperator)
-
-if __name__ == "__main__":
-    register()
-
 
 class NeutralizeTransformsOperator(bpy.types.Operator):
     """Set the parent inverse matrix to current object transforms then clear all transforms"""
@@ -46,15 +37,6 @@ class NeutralizeTransformsOperator(bpy.types.Operator):
                 # Nullify the vestigial inverse matrix
                 ob.matrix_basis.identity()
         return {'FINISHED'}
-
-def register():
-    bpy.utils.register_class(NeutralizeTransformsOperator)
-
-def unregister():
-    bpy.utils.unregister_class(NeutralizeTransformsOperator)
-
-if __name__ == "__main__":
-    register()
 
 
 class RelateDriversOperator(bpy.types.Operator):
@@ -89,15 +71,6 @@ class RelateDriversOperator(bpy.types.Operator):
                                     name = name[parent_index+6:len(name)]
         return {'FINISHED'}
 
-def register():
-    bpy.utils.register_class(RelateDriversOperator)
-
-def unregister():
-    bpy.utils.unregister_class(RelateDriversOperator)
-
-if __name__ == "__main__":
-    register()
-
 
 # Create Parent Tools UI in the Tool Shelf of the 3D View
 class ParentToolsUI(bpy.types.Panel):
@@ -106,7 +79,7 @@ class ParentToolsUI(bpy.types.Panel):
     bl_region_type = 'TOOLS'
     bl_label = "Parent Tools"
     bl_context = "objectmode"
-    bl_category = "Parent Tools"
+    bl_category = "Galvanized"
 
     def draw(self, context):
         layout = self.layout
@@ -121,15 +94,6 @@ class ParentToolsUI(bpy.types.Panel):
         row.operator("object.relate_drivers")
 
 
-def register():
-    bpy.utils.register_class(ParentToolsUI)
-
-def unregister():
-    bpy.utils.unregister_class(ParentToolsUI)
-
-if __name__ == "__main__":
-    register()
-
 
 # Create Parent Data UI in the Tool Shelf of the 3D View under within the Parent Tools category
 class ParentDataUI(bpy.types.Panel):
@@ -137,7 +101,7 @@ class ParentDataUI(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_context = "objectmode"
     bl_region_type = 'TOOLS'
-    bl_category = "Parent Tools"
+    bl_category = "Galvanized"
     bl_label = "Parent Data"
 
     def draw(self, context):
@@ -165,14 +129,3 @@ class ParentDataUI(bpy.types.Panel):
 
           row = layout.row()
           row.label(text="Scale: " + str(round(scale[0], 2)) + ", " + str(round(scale[1], 2)) + ", " + str(round(scale[2], 2)))
-
-
-
-def register():
-    bpy.utils.register_class(ParentDataUI)
-
-def unregister():
-    bpy.utils.unregister_class(ParentDataUI)
-
-if __name__ == "__main__":
-    register()
