@@ -62,7 +62,7 @@ class zDim(bpy.types.Operator):
 class propDim(bpy.types.Panel):
     """Set Dimension, Lock Proportions"""
     bl_label = "Set Dimension, Lock Proportions"
-    bl_category = "Galvanized"
+    bl_category = "Custom Tools"
     bl_context = "objectmode"
     bl_region_type = 'TOOLS'
     bl_space_type = 'VIEW_3D'

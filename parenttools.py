@@ -79,7 +79,7 @@ class ParentToolsUI(bpy.types.Panel):
     bl_region_type = 'TOOLS'
     bl_label = "Parent Tools"
     bl_context = "objectmode"
-    bl_category = "Galvanized"
+    bl_category = "Custom Tools"
 
     def draw(self, context):
         layout = self.layout
@@ -101,7 +101,7 @@ class ParentDataUI(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_context = "objectmode"
     bl_region_type = 'TOOLS'
-    bl_category = "Galvanized"
+    bl_category = "Custom Tools"
     bl_label = "Parent Data"
 
     def draw(self, context):

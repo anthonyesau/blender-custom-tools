@@ -1,4 +1,4 @@
-# Galvanized Tools
+# Blender Custom Tools
 An improved set of tools for Blender.
 
 ## Installation

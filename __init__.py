@@ -4,12 +4,12 @@
 
 #    Addon info
 bl_info = {
-    "name": "Galvanized Tools",
+    "name": "Custom Tools",
     "description": "Tools for general improved functionality.",
     "author": "Anthony Esau",
     "version": (0, 1),
     "blender": (2, 78, 2),
-    "location": "View3D > Tool Shelf > Galvanized",
+    "location": "View3D > Tool Shelf > Custom Tools",
     "warning": "",
     "wiki_url": "",
     "tracker_url": "",
